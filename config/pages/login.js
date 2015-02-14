@@ -1,4 +1,4 @@
-var config = require('../config');
+var config = require('../../config');
 
 module.exports = {
   url: config.peHost + '/user/auth/login/',

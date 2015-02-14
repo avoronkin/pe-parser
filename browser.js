@@ -1,7 +1,7 @@
 var wd = require('webdriverio');
 var wdOptions = require('./config').webdriverio;
-var loginPage = require('./pages/login.js');
-var topmenu = require('./pages/topmenu.js');
+var loginPage = require('./config/pages/login.js');
+var topmenu = require('./config/pages/topmenu.js');
 
 function Browser(){
   var client = wd.remote(wdOptions).init();

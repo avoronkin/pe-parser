@@ -3,10 +3,10 @@ var user = require('../config').user;
 
 var Q = require('q');
 
-var Bot = function(){
+function Bot(){
   this.browser = new Browser();
 
-};
+}
 
 Bot.prototype.stop = function(){
   this.browser.end();
