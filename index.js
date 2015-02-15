@@ -4,11 +4,14 @@ var Q = require('q');
 var bot = new Bot();
 
 bot
-.getTimetable({
-  studentId: 1360000094097
-})
-.then(function(data){
-  console.log('then 2', data);
+.getStudents()
+.then(function(students){
+
+  students.forEach(function(student){
+    console.log('student', student.id);
+
+  });
+  
 })
 .fail(function(error){
   console.log('error', error);

@@ -9,6 +9,10 @@ module.exports = function(html){
     ignoreWhitespace: true
   });
 
+  var prevLink = $('.back-forward a').attr('href');
+  var prebLinkParts = prevLink.split('/');
+  var studentId = parseInt(prebLinkParts[prebLinkParts.length-1], 10);
+
   var currentDate = $('#date').val();
   var year = currentDate.split('.')[2];
 
@@ -27,7 +31,6 @@ module.exports = function(html){
     'декабря':12
   };
 
-
   $('table thead th').each(function(index, element){
     var dayString = $(this).text().trim();
     var dayStringParts = dayString.split(' ');
@@ -42,7 +45,9 @@ module.exports = function(html){
   $('table tbody tr').not('.lesson-about').each(function(index, element){
     $(this).find('td').each(function(index){
       var $item = $(this);
-      var item = {};
+      var item = {
+        studentId: studentId
+      };
 
       var $grades = $item.children('.grade');
 
@@ -61,12 +66,17 @@ module.exports = function(html){
 
       item.subject = $item.children('h5').text().trim();
       item.about = $item.children('.about').text().trim();
-
       item.homework = $item.children('.homework').text().replace('Домашнее задание:', '').trim();
       item.date = days[index];
 
 
       if(item.subject){
+        var subjectLink = $item.children('h5').children('a').attr('href');
+        var subjectLinkParts = subjectLink.split('/');
+        var subjectId = parseInt(subjectLinkParts[subjectLinkParts.length - 1], 10);
+
+        item.subjectId = subjectId;
+
         data.push(item);
       }
 
