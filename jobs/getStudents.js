@@ -3,14 +3,16 @@ var Bot = require('../bot/PeBot.js');
 var mongoose = require('mongoose-q')();
 var Q = require('q');
 
-mongoose.connect('mongodb://' + config.mongodb.host + ':' + config.mongodb.port + '/pe');
+mongoose.connect(config.mongodb.url);
 
 var Student = require('../models/student');
-var bot = new Bot();
+
 
 
 module.exports = function(callback) {
   callback = callback ? callback : function() {};
+
+  var bot = new Bot();
 
   bot
     .getStudents()

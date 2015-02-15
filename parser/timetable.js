@@ -37,7 +37,7 @@ module.exports = function(html){
     var date = dayStringParts[1];
     var month = months[dayStringParts[2]];
 
-    var day = moment(date+'.'+month+'.'+year, "D.M.YYYY").format('DD.MM.YYYY');
+    var day = moment(date+'.'+month+'.'+year, "D.M.YYYY").toDate();//.format('DD.MM.YYYY');
 
     days.push(day);
   });

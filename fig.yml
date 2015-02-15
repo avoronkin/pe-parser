@@ -3,6 +3,8 @@ bot:
   volumes:
     - .:/src
   command: nodemon index.js
+  ports:
+    - "3000:3000"
   links:
      - selenium
      - mongodb
