@@ -1,6 +1,6 @@
 var cheerio = require('cheerio');
 
-module.exports = function(html){
+module.exports = function(html) {
   var students = [];
 
   $ = cheerio.load(html, {
@@ -8,7 +8,7 @@ module.exports = function(html){
   });
 
 
-  $('.user-box .heading').each(function(index, element){
+  $('.user-box .heading').each(function(index, element) {
     var $student = $(this);
     var $fio = $student.children('.fio');
     var $profileLink = $fio.children('a');
@@ -18,7 +18,7 @@ module.exports = function(html){
 
     var profileLink = $profileLink.attr('href');
     var profileLinkParts = profileLink.split('/');
-    student.id = profileLinkParts[profileLinkParts.length-1];
+    student.id = parseInt(profileLinkParts[profileLinkParts.length - 1], 10);
 
     students.push(student);
   });

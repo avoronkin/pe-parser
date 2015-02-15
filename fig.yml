@@ -5,7 +5,10 @@ bot:
   command: nodemon index.js
   links:
      - selenium
+     - mongodb
 selenium:
   image: selenium/standalone-chrome:2.44.0
-  ports:
-   - "4444:4444"
+mongodb:
+  image: mongo:2.7.7
+  ports: 
+    - "27000:27017"
