@@ -51,7 +51,12 @@ module.exports = function(options, callback) {
       return Q.allSettled(promises);
 
     }).then(callback.bind(null, null))
-    .fail(callback)
-    .fin(bot.stop);
+    .fail(function(error) {
+      callback(error);
+      bot.stop();
+    })
+    .fin(function() {
+      bot.stop();
+    });
 
 };

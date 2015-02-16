@@ -23,7 +23,12 @@ module.exports = function(callback) {
       return Q.all(promises);
     })
     .then(callback.bind(null, null))
-    .fail(callback)
-    .fin(bot.stop);
+    .fail(function(error) {
+      callback(error);
+      bot.stop();
+    })
+    .fin(function() {
+      bot.stop();
+    });
 
 };

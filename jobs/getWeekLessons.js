@@ -13,7 +13,7 @@ module.exports = function(options, callback) {
   callback = callback ? callback : function() {};
 
   var bot = new Bot();
-  
+
   bot
     .getTimetable({
       studentId: options.studentId
@@ -23,7 +23,7 @@ module.exports = function(options, callback) {
 
       var promises = [];
 
-      lessons.forEach(function(lesson){
+      lessons.forEach(function(lesson) {
         var _lesson = new Lesson(lesson);
         promises.push(_lesson.save());
       });
@@ -31,7 +31,12 @@ module.exports = function(options, callback) {
       return Q.allSettled(promises);
     })
     .then(callback.bind(null, null))
-    .fail(callback)
-    .fin(bot.stop);
+    .fail(function(error) {
+      callback(error);
+      bot.stop();
+    })
+    .fin(function() {
+      bot.stop();
+    });
 
 };

@@ -1,8 +1,8 @@
 var config = require('./config');
+
 var mongoose = require('mongoose-q')();
 mongoose.connect(config.mongodb.peUrl);
-var Students = require('./models/student');
-
+var Student = require('./models/student');
 
 var schedule = require('node-schedule');
 var rule = new schedule.RecurrenceRule();
@@ -13,12 +13,10 @@ rule.minute = new schedule.Range(0, 59, 5);
 
 var getWeekLessons = require('./jobs/getWeekLessons');
 
-
-
 schedule.scheduleJob(rule, function() {
   console.log('start job', (new Date()));
 
-  Students.find({}, function(err, students) {
+  Student.find({}, function(err, students) {
     students.forEach(function(student) {
 
       getWeekLessons({
