@@ -17,7 +17,7 @@ function Browser() {
 
   client.addCommand('auth', function(user, cb) {
     client.url(function(err, responce) {
-      var url = responce.value;
+      var url = (responce && responce.value) ? responce.value : null;
 
       client.element(topmenu.el.logoutLink, function(err, element) {
         if (!err) {

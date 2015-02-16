@@ -1,37 +1,14 @@
-// var getStudentsJob = require('./jobs/getStudents');
-
-// getStudentsJob(function(error) {
-//   if (error) {
-//     console.log('job get students - error:', error);
-//   } else {
-//     console.log('job get students - done');
-//   }
-// });
-
-
-// var getAllLessons = require('./jobs/getAllLessons');
-
-// getAllLessons({
-//   studentId: 1360000094097//1360000036242
-// }, function(error){
-//   if(error){
-//     console.log('getAllLessons error', error);
-//   }else{
-
-//     console.log('getAllLessons job done.');
-//   }
-// });
-
 var express = require('express');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var restify = require('express-restify-mongoose');
 var config = require('./config');
-var mongoose = require('mongoose');
+
+var mongoose = require('mongoose-q')();
 var Student = require('./models/student');
 var Lesson = require('./models/lesson');
 
-mongoose.connect(config.mongodb.url);
+mongoose.connect(config.mongodb.peUrl);
 
 var app = express();
 app.use(bodyParser.json());

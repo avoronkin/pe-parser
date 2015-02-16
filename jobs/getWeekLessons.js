@@ -1,11 +1,7 @@
 var config = require('../config');
 var Bot = require('../bot/PeBot.js');
-var mongoose = require('mongoose-q')();
 var Q = require('q');
 var moment = require('moment-range');
-
-mongoose.connect(config.mongodb.url);
-
 var Lesson = require('../models/lesson');
 
 
@@ -23,6 +19,7 @@ module.exports = function(options, callback) {
       studentId: options.studentId
     })
     .then(function(lessons) {
+      console.log('lessons', lessons);
 
       var promises = [];
 

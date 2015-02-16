@@ -1,10 +1,6 @@
 var config = require('../config');
 var Bot = require('../bot/PeBot.js');
-var mongoose = require('mongoose-q')();
 var Q = require('q');
-
-mongoose.connect(config.mongodb.url);
-
 var Student = require('../models/student');
 
 

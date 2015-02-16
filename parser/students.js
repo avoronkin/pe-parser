@@ -23,6 +23,5 @@ module.exports = function(html) {
     students.push(student);
   });
 
-
   return students;
 };
